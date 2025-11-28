@@ -1,9 +1,12 @@
+using CortexFilterTestAPI.Ai;
 using CortexFilterTestAPI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.Configure<OpenAiSettings>(builder.Configuration.GetSection(nameof(OpenAiSettings)));
+builder.Services.AddScoped<AzureChatClientProvider>();
 builder.Services.AddScoped<EmployeesRepository>();
 builder.Services.AddScoped<AbsencesRepository>();
 builder.Services.AddEndpointsApiExplorer();
